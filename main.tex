@@ -10,6 +10,7 @@
 \usepackage{hyperref}
 \usepackage{url}
 \usepackage{pdfpages}
+\usepackage{comment}
 
 \title{Report of Project: Build an Adversarial Game Playing Agent}
 \author{Israel G. de Oliveira}
@@ -130,7 +131,9 @@ Similar to the first strategy, but going in a little more deeper in the beginnin
 
 \section{Experiments}
 
-Combining the two search stategies (\ref{S1}) and (\ref{S2}), the two heuristics scores (\ref{SH1}) and (\ref{SH2}) and four ways to calculate the constants, we achive 16 agents. Falowing the tag: S$a$SC$b$W$c$, with $a$ the number of the search strategy, $b$ the number of the heuristic score and $c$ the number of the function to calculate the constants. The whole experiment is composed by: 100 rounds, with fair matches, totaling 400 matches. The time limit for give a move is 150 ms, default in the framewokr provided by Udacity.
+Combining the two search stategies (\ref{S1}) and (\ref{S2}), the two heuristics scores (\ref{SH1}) and (\ref{SH2}) and four ways to calculate the constants, we achive 16 agents. Falowing the tag: S$a$SC$b$W$c$, with $a$ the number of the search strategy, $b$ the number of the heuristic score and $c$ the number of the function to calculate the constants. The whole experiment is composed by: 100 rounds, with fair matches, totaling 400 matches. The time limit for give a move is 150 ms, default in the framework provided by Udacity.
+
+\subsection{Results}
 
 \begin{figure}[htpb]
 \begin{center}
@@ -151,7 +154,7 @@ Combining the two search stategies (\ref{S1}) and (\ref{S2}), the two heuristics
     S1SC1W3 & 0.695 \\
     S1SC1W4 & 0.6975 \\
     S1SC2W1 & 0.715 \\
-    S1SC2W2 & 0.79 \\
+    S1SC2W2 & 0.\textbf{79} \\
     S1SC2W3 & 0.7475 \\
     S1SC2W4 & 0.725 \\
     S2SC1W1 & 0.6125 \\
@@ -166,6 +169,8 @@ Combining the two search stategies (\ref{S1}) and (\ref{S2}), the two heuristics
     \label{tabwinsMINIMAX}
     \end{table}
 
+
+In figure \ref{figwinsMINIMAX} and table \ref{tabwinsMINIMAX}, all methods vs. MINIMAX, it is possible to see a improvement with the proposed heuristics. The first search strategy (\ref{S1}) achieve better results then (\ref{S2}), independent of all score heuristics. With search strategy (\ref{S1}), the wins is around 70\%, a sginificant improvement. Looking only for the scores (\ref{SH1}) and (\ref{SH2}), the second appears to be better. For weights, the (\ref{C2}) has a prominence among the others.
     
 %==============================================
 
@@ -195,7 +200,7 @@ Combining the two search stategies (\ref{S1}) and (\ref{S2}), the two heuristics
     S2SC1W1 & 0.95 \\
     S2SC1W2 & 0.95 \\
     S2SC1W3 & 0.95 \\
-    S2SC1W4 & 0.96 \\
+    S2SC1W4 & \textbf{0.96} \\
     S2SC2W1 & 0.94 \\
     S2SC2W2 & 0.9275 \\
     S2SC2W3 & 0.9375 \\
@@ -203,6 +208,8 @@ Combining the two search stategies (\ref{S1}) and (\ref{S2}), the two heuristics
     \end{tabular}
     \label{tabwinsRANDOM}
     \end{table}
+
+In figure \ref{figwinsRANDOM} and table \ref{tabwinsRANDOM} vs. a Player Agent using randomly moves, it is possible to see great improvement with the proposed heuristics. However, it is not possible to infer something relevant about the search strategies and heuristics: appears have not a pattern throw the methods.
 
     
 %==============================================
@@ -222,19 +229,19 @@ Combining the two search stategies (\ref{S1}) and (\ref{S2}), the two heuristics
     \centering
     \begin{tabular}{ l | c }
     Heuristic & Wins (\%) \\ \hline 
-    S1SC1W1 & 1.0 \\
-    S1SC1W2 & 1.0 \\
-    S1SC1W3 & 1.0 \\
-    S1SC1W4 & 1.0 \\
-    S1SC2W1 & 1.0 \\
-    S1SC2W2 & 1.0 \\
-    S1SC2W3 & 1.0 \\
-    S1SC2W4 & 1.0 \\
-    S2SC1W1 & 1.0 \\
+    S1SC1W1 & \textbf{1.0} \\
+    S1SC1W2 & \textbf{1.0} \\
+    S1SC1W3 & \textbf{1.0} \\
+    S1SC1W4 & \textbf{1.0} \\
+    S1SC2W1 & \textbf{1.0} \\
+    S1SC2W2 & \textbf{1.0} \\
+    S1SC2W3 & \textbf{1.0} \\
+    S1SC2W4 & \textbf{1.0} \\
+    S2SC1W1 & \textbf{1.0} \\
     S2SC1W2 & 0.5 \\
     S2SC1W3 & 0.5 \\
     S2SC1W4 & 0.5 \\
-    S2SC2W1 & 1.0 \\
+    S2SC2W1 & \textbf{1.0} \\
     S2SC2W2 & 0.75 \\
     S2SC2W3 & 0.75 \\
     S2SC2W4 & 0.75 
@@ -242,9 +249,59 @@ Combining the two search stategies (\ref{S1}) and (\ref{S2}), the two heuristics
     \label{tabwinsGREEDY}
     \end{table}
 
+In figure \ref{figwinsRANDOM} and table \ref{tabwinsRANDOM} vs. a Player Agent GREEDY, if we use the fisrt search strategy (\ref{SH1}) our agent wins all matches. With (\ref{S2}), we have an apparent abnormality. Checking such behavior in other experiments, one might suggest that this behavior is inherent in the fact that the opponent uses a Minimax with depth of one level. 
     
 %==============================================
 
+\subsection{Custom Player Agent}
+
+For the Custom Player Agent, we have the fallow search strategy:
+
+    \begin{equation}
+        S_{cp}(G_s) = \left \{
+        \begin{matrix} 
+        57 &  c_{play} < 3,~ X_{opp} \neq 57 \\
+        0 &  c_{play} < 3,~ X_{opp} = 57 \\
+        \text{Minimax}(G_s,2) & c_{play} \in [3, 6] \\
+        \text{Minimax}(G_s, \max \left ( \left \lfloor \frac{c_{play}}{10} \right \rfloor, 2 \right ) \right ) & c_{play} > 6
+        \end{matrix} \right .
+        \label{Self}
+    \end{equation}
+
+    \item Score heuristic (\ref{SH2}) and weights:
+    
+    \begin{equation}
+        C(G_s) =  \begin{bmatrix} 
+        1/2+1/({2+c_{play}}) \\
+        3/2-1/({2+c_{play}}) \\ 
+                                  1 \\ 1 \end{bmatrix}  \label{C2}
+    \end{equation}
+
+The Custom Player is necessary for not fail in automated tests, because all other heuristics presented fail in time test (limit of 150 ms). In table \ref{tabwinsCP}, with this agent, it is possible to achieve a improvement. With sample agent with Minimax search, the improvement is less significant, basically, because the difference is only the score heuristic function.
+
+\begin{table}[htpb]
+    \caption{ Wins: Custom Player vs. all sample players.}
+    \centering
+    \begin{tabular}{ l | c }
+    Heuristic & Wins (\%) \\ \hline 
+    MINIMAX & 0.61 \\
+    GREEDY & 0.75 \\
+    RANDOM & \textbf{0.95} 
+    \end{tabular}
+    \label{tabwinsCP}
+    \end{table}
+
+\section{Conclusions}
+
+With this work, is possible to experiment some search algorithms and heuristics applying to a adversarial game. The different opponents agents (against different strategies) diversify the effects and results that, which shows the different characteristics between the custom strategies. As expected, how smart is the agent, more difficult is win and, maybe, more plays are needed. The time to search the best move is crucial, both for human players and for IA players.
+
+\bibliographystyle{IEEEtran}
+\bibliography{bibliography.bib}
+
+\appendix
+\section{Counting Plays.}
+
+Nothing so great can be extract from the fallow tables and figures, only the fact that when the opponent is smart, we need more plays.
 
 \begin{figure}[htpb]
 \begin{center}
@@ -359,17 +416,5 @@ Combining the two search stategies (\ref{S1}) and (\ref{S2}), the two heuristics
     
 %==============================================
 
-\section{Conclusions}
-
-With this work, is possible to experiment some search algorithms and heuristics applying to a conceptual logistic problem. The different scales of the problem (different size of graphs) diversify the effects and results that, which shows the different characteristics between the search methods.
-
-As expected,  the A* search algorithm presents the overall best results and, not so expected, the DFGS presents the wort results. Of course, only with these four search problems is it not possible to evaluate the methods in a general and conclusive way, but one can extract good experience and good notions from each one.
-
-\bibliographystyle{IEEEtran}
-\bibliography{bibliography.bib}
-
-%\appendix
-%\section{Jupyter Notebook: processing the results.}
-%\includepdf{analise.pdf}
 
 \end{document}
